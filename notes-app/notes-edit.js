@@ -1,3 +1,5 @@
+'use strict'
+
 // 1. Add a DOM element between the title and body inputs (empty span)
 // 2. Set the text value Last edited 4 hours ago
 // 3. Update value on title/body/storage change
@@ -11,7 +13,7 @@ const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
 let note = notes.find((note) => note.id === noteId)
 
-if (note === undefined) {
+if (!note) {
     location.assign('/index.html')
 }
 
@@ -44,7 +46,7 @@ window.addEventListener('storage', (e) => {
         notes = JSON.parse(e.newValue)
         let note = notes.find((note) => note.id === noteId)
         
-        if (note === undefined) {
+        if (!note) {
             location.assign('/index.html')
         }
         

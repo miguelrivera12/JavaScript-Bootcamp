@@ -4,21 +4,33 @@
 
 const gradeCalculator = function (score = 0, totalScore) {
     const percent = (score / totalScore) * 100
-    
-    if (percent >= 90) {
-        letterGrade = 'A'
-    } else if (percent >= 80) {
-        letterGrade = 'B'
-    } else if (percent >= 70) {
-        letterGrade = 'C'
-    } else if (percent >= 60) {
-        letterGrade = 'D'
-    } else {
-        letterGrade = 'F'
-    }
 
-    return `You got a ${letterGrade} (${percent}%)!`
+    if (typeof score !== 'number' || typeof totalScore !== 'number') {
+            throw Error ('Argument must be a number')
+        }
+
+        if (percent >= 90) {
+        letterGrade = 'A'
+        } else if (percent >= 80) {
+        letterGrade = 'B'
+        } else if (percent >= 70) {
+        letterGrade = 'C'
+        } else if (percent >= 60) {
+        letterGrade = 'D'
+        } else {
+        letterGrade = 'F'
+        }
+
+        return `You got a ${letterGrade} (${percent}%)!`
+    
 }
 
-const grade = gradeCalculator(18, 20)
-console.log(grade)
+
+
+
+try {
+    const grade = gradeCalculator('10, 10')
+    console.log(grade)
+} catch (e) {
+    console.log(e.message)
+}
