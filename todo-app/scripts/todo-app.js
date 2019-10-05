@@ -16,11 +16,18 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
-    todos.push({
-        id: uuidv4(),
-        text: e.target.elements.text.value,
-        completed: false
-    })
+    let textEl = e.target.elements.text.value.trim()
+
+    if (textEl.length > 0) {
+        todos.push({
+            id: uuidv4(),
+            text: textEl,
+            completed: false
+        })
+    } else {
+        alert('We need some text to make something happen')
+    }
+    
     saveTodos(todos)
     renderTodos(todos, filters)
     e.target.elements.text.value = ''
